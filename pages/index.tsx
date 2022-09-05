@@ -83,28 +83,28 @@ const Home: NextPage = (props: any) => {
   )
 }
 
-export async function getStaticProps() {
-  // Call an external API endpoint to get posts
-  const res = await fetch('https://610b520052d56400176b0202.mockapi.io/api/production')
-  const posts = await res.json()
+// export async function getStaticProps() {
+//   // Call an external API endpoint to get posts
+//   const res = await fetch('https://610b520052d56400176b0202.mockapi.io/api/production')
+//   const posts = await res.json()
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: {
-      posts,
-    },
-  }
-}
-
-// export async function getServerSideProps() {
-//   // Fetch data from external API
-//   const res = await fetch(`https://610b520052d56400176b0202.mockapi.io/api/production`)
-//   const data = await res.json();
-
-//   // Pass data to the page via props
-//   return { props: { posts: data } }
+//   // By returning { props: { posts } }, the Blog component
+//   // will receive `posts` as a prop at build time
+//   return {
+//     props: {
+//       posts,
+//     },
+//   }
 // }
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`https://610b520052d56400176b0202.mockapi.io/api/production`)
+  const data = await res.json();
+
+  // Pass data to the page via props
+  return { props: { posts: data } }
+}
 
 Home.displayName = 'Home';
 
